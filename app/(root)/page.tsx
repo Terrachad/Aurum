@@ -27,7 +27,7 @@ const Dashboard = () => {
         <RightSideBar 
         user={loggedIn}
         transactions={[]}
-        banks={[{},{}]}
+        banks={[{ currentBalance: 420},{}]}
         />
     </section>
     )

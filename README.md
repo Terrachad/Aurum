@@ -1,36 +1,118 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+![Aurum-rounded-git](https://github.com/user-attachments/assets/d20717fb-5e62-47ff-a3dc-0bff34eec878)
 
-## Getting Started
 
-First, run the development server:
+# 📋 Table of Contents
+* 🚀 [Introduction](#introduction)
+* ⚙️ [Tech Stack](#tech-stack)
+* 🔋 [Features](#features)
+* 🤸 [Quick Start](#quick-start)
 
+# 🚀 Introduction
+<a name="introduction"></a>
+Aurum is a powerful financial SaaS platform built with Next.js that enables users to connect multiple bank accounts, view real-time transactions, transfer money between users, and comprehensively manage their finances in one place.
+
+# ⚙️ Tech Stack
+<a name="tech-stack"></a>
+* Next.js
+* TypeScript
+* Appwrite
+* Plaid
+* Dwolla
+* React Hook Form
+* Zod
+* TailwindCSS
+* Chart.js
+* ShadCN
+
+# 🔋 Features
+<a name="features"></a>
+## ✨ Comprehensive Financial Management
+### 🔐 Secure Authentication
+Enterprise-grade SSR authentication with robust validation and authorization protocols.
+
+### 🏦 Banking Integration
+#### 🔄 Multi-Bank Connection
+Connect and manage multiple bank accounts seamlessly through Plaid integration.
+
+#### 📊 Account Overview
+* Total balance across all connected accounts
+* Recent transaction history
+* Category-wise spending analysis
+* Real-time account updates
+
+### 💳 Transaction Management
+#### 📱 Complete Visibility
+* Comprehensive transaction history
+* Advanced filtering options
+* Pagination for better organization
+* Real-time transaction updates
+
+### 💸 Money Transfer
+#### 🔄 Secure Transfers
+* User-to-user fund transfers via Dwolla
+* Secure recipient verification
+* Detailed transfer history
+* Real-time transfer status updates
+
+### 📱 Platform Accessibility
+#### 🖥️ Universal Access
+Responsive design ensuring seamless experience across desktop, tablet, and mobile devices.
+
+# 🤸 Quick Start
+<a name="quick-start"></a>
+Follow these steps to set up the project locally on your machine.
+
+## Prerequisites
+Make sure you have the following installed on your machine:
+* Git
+* Node.js
+* npm (Node Package Manager)
+
+## Cloning the Repository
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/adrianhajdin/banking.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Installation
+Install the project dependencies using npm:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Set Up Environment Variables
+Create a new file named `.env` in the root of your project and add the following content:
+```env
+#NEXT
+NEXT_PUBLIC_SITE_URL=
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+#APPWRITE
+NEXT_PUBLIC_APPWRITE_ENDPOINT=https://cloud.appwrite.io/v1
+NEXT_PUBLIC_APPWRITE_PROJECT=
+APPWRITE_DATABASE_ID=
+APPWRITE_USER_COLLECTION_ID=
+APPWRITE_BANK_COLLECTION_ID=
+APPWRITE_TRANSACTION_COLLECTION_ID=
+APPWRITE_SECRET=
 
-## Learn More
+#PLAID
+PLAID_CLIENT_ID=
+PLAID_SECRET=
+PLAID_ENV=
+PLAID_PRODUCTS=
+PLAID_COUNTRY_CODES=
 
-To learn more about Next.js, take a look at the following resources:
+#DWOLLA
+DWOLLA_KEY=
+DWOLLA_SECRET=
+DWOLLA_BASE_URL=https://api-sandbox.dwolla.com
+DWOLLA_ENV=sandbox
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Replace the placeholder values with your actual respective account credentials. You can obtain these credentials by signing up on the Appwrite, Plaid and Dwolla websites.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Running the Project
+```bash
+npm run dev
+```
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Open [http://localhost:3000](http://localhost:3000) in your browser to view the project.

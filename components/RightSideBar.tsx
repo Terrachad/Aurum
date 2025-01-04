@@ -6,7 +6,7 @@ import BankCard from './BankCard'
 const RightSideBar = ({user, transactions, banks} : RightSidebarProps) => {
   return (
     <aside className='right-sidebar'>
-      <section>
+      <section className='flex flex-col pb-8'>
         <div className='profile-banner'/>
         <div className='profile'>
 
@@ -26,7 +26,7 @@ const RightSideBar = ({user, transactions, banks} : RightSidebarProps) => {
       <section className='banks'>
           <div className='flex w-full justify-between'>
             <h2 className='header-2'>My banks</h2>
-              <Link href='/' className='flex gap-2'>
+              <Link href='/' className='flex gap-2 '>
                 <Image
                 src='/icons/plus.svg'
                 width={20}
@@ -40,7 +40,7 @@ const RightSideBar = ({user, transactions, banks} : RightSidebarProps) => {
           </div>
           {banks?.length > 0 && 
             (
-            <div className='relative flex flex-1 flex-col items-center justify-center gap-5'>
+            <div className='relative flex flex-1 flex-col items-center justify-center '>
               <div className='relative z-10'>
                  <BankCard
                  key={banks[0].$id}
@@ -58,7 +58,6 @@ const RightSideBar = ({user, transactions, banks} : RightSidebarProps) => {
                       userName={`${user.firstName} ${user.lastName}`}
                       showBalance={false}
                     />
-
                   </div>
                 )
               }

@@ -30,7 +30,13 @@ function CustomInput<T extends FieldValues>({
                                 value={value || ""}  // Ensure value is never undefined
                                 placeholder={placeholder}
                                 className='input-class'
-                                type={name === 'password' ? 'password' : 'text'}
+                                type={
+                                    name === 'password'
+                                        ? 'password'
+                                        : name === 'dob'
+                                        ? 'date'
+                                        : 'text'
+                                }
                             />
                         </FormControl>
                         <FormMessage className='form-message mt-2' />

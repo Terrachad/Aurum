@@ -196,9 +196,40 @@ export const getTransactionStatus = (date: Date) => {
 };
 
 
-export const authFormSchema = z.object({
-  email: z.string().email({
-    message: "Please provide a real email adress",
-  }),
-  password: z.string().min(8)
+const baseAuthSchema = z.object({
+  email: z.string().email("Please provide a valid email address"),
+  password: z.string().min(8, "Password must be at least 8 characters"),
 })
+
+const signUpExtendedSchema = z.object({
+  firstname: z.string()
+    .min(2, "First name must be at least 2 characters")
+    .max(30, "First name cannot exceed 30 characters"),
+  lastname: z.string()
+    .min(2, "Last name must be at least 2 characters")
+    .max(30, "Last name cannot exceed 30 characters"),
+  address: z.string()
+    .min(2, "Address must be at least 2 characters")
+    .max(60, "Address cannot exceed 60 characters"),
+  city: z.string()
+    .min(2, "City must be at least 2 characters")
+    .max(60, "City cannot exceed 60 characters"),
+  state: z.string()
+    .min(2, "State must be at least 2 characters")
+    .max(30, "State cannot exceed 30 characters"),
+  postalcode: z.string()
+    .min(3, "Postal code must be at least 3 characters")
+    .max(30, "Postal code cannot exceed 30 characters"),
+  dob: z.string().min(4, "Provide real date of birth"),
+  ssn: z.string()
+    .min(2, "SSN must be at least 2 characters")
+    .max(30, "SSN cannot exceed 30 characters"),
+})
+
+export const authSchema = {
+  "sign-in": baseAuthSchema,
+  "sign-up": baseAuthSchema.merge(signUpExtendedSchema),
+} as const
+
+export type AuthType = keyof typeof authSchema
+export type AuthSchemaType<T extends AuthType> = z.infer<typeof authSchema[T]>

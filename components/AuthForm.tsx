@@ -12,6 +12,7 @@ import CustomInput from './CustomInput'
 import { Loader2 } from 'lucide-react'
 import { authSchema, AuthSchemaType, AuthType } from '@/lib/utils'
 import { useRouter } from 'next/navigation'
+import { signIn, signUp } from '@/lib/actions/user.actions'
 
 interface AuthFormProps {
     type: AuthType
@@ -47,12 +48,12 @@ const AuthForm = ({ type }: AuthFormProps) => {
         try {
             //sign-up w appwrite & create token
             if(type === 'sign-up'){
-                //const newUser = await signUp(values);
-                //setUser(newUser);
+                const newUser = await signUp(values);
+                setUser(newUser);
             }
             if(type === 'sign-in'){
-                //const returnedUser = await signIn(values)
-                //if(!!returnedUser) router.push('/')
+                const returnedUser = await signIn(values)
+                if(returnedUser) router.push('/')
             }
 
             return

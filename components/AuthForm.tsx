@@ -27,12 +27,12 @@ const AuthForm = ({ type }: AuthFormProps) => {
         email: "",
         password: "",
         ...(type === "sign-up" && {
-            firstname: "",
-            lastname: "",
+            firstName: "",
+            lastName: "",
             address: "",
             state: "",
             postalcode: "",
-            dob: "",
+            dateOfBirth: "",
             ssn: "",
         })
     });
@@ -49,14 +49,17 @@ const AuthForm = ({ type }: AuthFormProps) => {
             //sign-up w appwrite & create token
             if(type === 'sign-up'){
                 const newUser = await signUp(values);
+
                 setUser(newUser);
+
+
             }
             if(type === 'sign-in'){
                 const returnedUser = await signIn(values)
                 if(returnedUser) router.push('/')
             }
 
-            return
+            
         } catch (error) {
             console.log(error)
             
@@ -76,17 +79,25 @@ const AuthForm = ({ type }: AuthFormProps) => {
                         alt='Aurum Logo'
                     />
                 </Link>
-                <div className='flex flex-col gap-1 md:gap-3'>
-                    <h1 className='text-24 lg:text-36 font-semibold text-gray-900'>
-                        {type === 'sign-in' ? 'Sign In' : 'Sign Up'}
-                        <p className='text-16 font-normal text-gray-600'>
-                            Please enter your details
-                        </p>
-                    </h1>
+                <div className="flex flex-col gap-1 md:gap-3">
+                    <h1 className="text-24 lg:text-36 font-semibold text-gray-900">
+                    {user 
+                        ? 'Link Account'
+                        : type === 'sign-in'
+                        ? 'Sign In'
+                        : 'Sign Up'
+                    }</h1>
+                    <p className="text-16 font-normal text-gray-600">
+                        {user 
+                        ? 'Link your account to get started'
+                        : 'Please enter your details'
+                        }
+                    </p>  
+                    
                 </div>
             </header>
-
-            <Form {...form} >
+            {!user && (<>
+                <Form {...form} >
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                     <CustomInput
                         control={form.control}
@@ -105,13 +116,13 @@ const AuthForm = ({ type }: AuthFormProps) => {
                             <div className='grid grid-cols-2 w-full gap-4'>
                             <CustomInput
                                 control={form.control}
-                                name="firstname"
+                                name="firstName"
                                 label="First Name"
                                 placeholder="Enter your first name"
                             />
                             <CustomInput
                                 control={form.control}
-                                name="lastname"
+                                name="lastName"
                                 label="Last Name"
                                 placeholder="Enter your last name"
                             />
@@ -150,7 +161,7 @@ const AuthForm = ({ type }: AuthFormProps) => {
                             />
                             <CustomInput
                                 control={form.control}
-                                name="dob"
+                                name="dateOfBirth"
                                 label="Date of Birth"
                                 placeholder="Enter your date of birth"
                             />
@@ -180,6 +191,8 @@ const AuthForm = ({ type }: AuthFormProps) => {
                     {type === 'sign-in' ? `Sign up` : `Sign in`}
                 </Link>
             </footer>
+            </>)}
+
         </section>
     )
 }

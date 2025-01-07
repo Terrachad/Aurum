@@ -33,7 +33,7 @@ function CustomInput<T extends FieldValues>({
                                 type={
                                     name === 'password'
                                         ? 'password'
-                                        : name === 'dob'
+                                        : name === 'dateOfBirth'
                                         ? 'date'
                                         : 'text'
                                 }

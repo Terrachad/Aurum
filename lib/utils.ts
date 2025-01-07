@@ -202,10 +202,10 @@ const baseAuthSchema = z.object({
 })
 
 const signUpExtendedSchema = z.object({
-  firstname: z.string()
+  firstName: z.string()
     .min(2, "First name must be at least 2 characters")
     .max(30, "First name cannot exceed 30 characters"),
-  lastname: z.string()
+  lastName: z.string()
     .min(2, "Last name must be at least 2 characters")
     .max(30, "Last name cannot exceed 30 characters"),
   address: z.string()
@@ -220,7 +220,7 @@ const signUpExtendedSchema = z.object({
   postalcode: z.string()
     .min(3, "Postal code must be at least 3 characters")
     .max(30, "Postal code cannot exceed 30 characters"),
-  dob: z.string().min(4, "Provide real date of birth"),
+  dateOfBirth: z.string().min(4, "Provide real date of birth"),
   ssn: z.string()
     .min(2, "SSN must be at least 2 characters")
     .max(30, "SSN cannot exceed 30 characters"),

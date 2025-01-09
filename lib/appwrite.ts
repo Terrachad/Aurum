@@ -7,13 +7,22 @@ export async function createSessionClient() {
     .setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT!)
     .setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT!);
 
-  const cookieStore = await cookies();
-  const session = cookieStore.get("aurum-appwrite-session");
-  if (!session || !session.value) {
-    throw new Error("No session");
-  }
+        const cookieStore = await cookies();
+        const session = cookieStore.get("aurum-appwrite-session");
 
-  client.setSession(session.value);
+        // Instead of throwing error, return a new client if no session
+        if (!session || !session.value) {
+            return {
+                account: new Account(client)
+            };
+        }
+
+        // If we have a session, set it
+        client.setSession(session.value);
+        
+        return {
+            account: new Account(client)
+        };
 
   return {
     get account() {
@@ -35,7 +44,7 @@ export async function createAdminClient() {
     get database(){
         return new Databases(client);
     },
-    get users(){
+    get user(){
         return new Users(client);
     }
   };
